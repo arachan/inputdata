@@ -73,6 +73,7 @@ public class NameListController implements Initializable{
 
     }    
     
+    @FXML
     private void showNameDetails(Namelist name){
         if(name!=null){
             //Fill the labels with info from the sale object.
@@ -86,7 +87,7 @@ public class NameListController implements Initializable{
     }
     
      @FXML
-    private void handleDeletePerson(){
+    private void handleDeleteName(){
         int selectedIndex=TableView.getSelectionModel().getSelectedIndex();
         if(selectedIndex >=0){
             //personTable.getItems().remove(selectedIndex);
@@ -107,7 +108,7 @@ public class NameListController implements Initializable{
      * details for a new person.
      */
     @FXML
-    private void handleNewPerson(){
+    private void handleNewName(){
         Namelist Name=new Namelist();
         //boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
         //if(okClicked){
@@ -121,7 +122,7 @@ public class NameListController implements Initializable{
      * 
      */
     @FXML
-     private void handleEditPerson(){
+     private void handleEditName(){
          Namelist name=TableView.getSelectionModel().getSelectedItem();
          if(name!=null){
              //boolean okClicked = mainApp.showPersonEditDialog(name);
