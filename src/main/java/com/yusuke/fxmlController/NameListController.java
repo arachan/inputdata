@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -82,5 +83,62 @@ public class NameListController implements Initializable{
             IDField.setText("");
             NameField.setText("");
         }
-    }    
+    }
+    
+     @FXML
+    private void handleDeletePerson(){
+        int selectedIndex=TableView.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >=0){
+            //personTable.getItems().remove(selectedIndex);
+        }else{
+            //Nothing selected.
+            Alert alert=new Alert(Alert.AlertType.WARNING);
+            //alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("No  Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+            
+            alert.showAndWait();
+        }
+    }
+    
+    /**
+     * Called when the user clicks the new button. Opens a dialog to edit
+     * details for a new person.
+     */
+    @FXML
+    private void handleNewPerson(){
+        Namelist Name=new Namelist();
+        //boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
+        //if(okClicked){
+            //mainApp.getPersonData().add(tempPerson);
+        //}
+    }
+    
+    /**
+     * Called when the user clicks the edit button. Opens a dialog to edit
+     * details for the selected person.
+     * 
+     */
+    @FXML
+     private void handleEditPerson(){
+         Namelist name=TableView.getSelectionModel().getSelectedItem();
+         if(name!=null){
+             //boolean okClicked = mainApp.showPersonEditDialog(name);
+             //if(okClicked){
+             //    showPersonDetails(selectedPerson);
+             //}
+         }else{
+             //Nothing selected.
+             Alert alert =new Alert(Alert.AlertType.WARNING);
+             //alert.initOwner(mainApp.getPrimaryStage());
+             alert.setTitle("No Selection");
+             alert.setHeaderText("No Person Selected");
+             alert.setContentText("Please select a person in the table.");
+             
+             alert.showAndWait();
+         }
+     }
+
+    
 }
