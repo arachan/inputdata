@@ -91,6 +91,7 @@ public class NameListController implements Initializable{
         int selectedIndex=TableView.getSelectionModel().getSelectedIndex();
         if(selectedIndex >=0){
             //personTable.getItems().remove(selectedIndex);
+            System.out.println("delete");
         }else{
             //Nothing selected.
             Alert alert=new Alert(Alert.AlertType.WARNING);
@@ -110,6 +111,7 @@ public class NameListController implements Initializable{
     @FXML
     private void handleNewName(){
         Namelist Name=new Namelist();
+        
         //boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
         //if(okClicked){
             //mainApp.getPersonData().add(tempPerson);
@@ -124,13 +126,21 @@ public class NameListController implements Initializable{
     @FXML
      private void handleEditName(){
          Namelist name=TableView.getSelectionModel().getSelectedItem();
+         //Data Update
          if(name!=null){
              //boolean okClicked = mainApp.showPersonEditDialog(name);
              //if(okClicked){
              //    showPersonDetails(selectedPerson);
              //}
+             System.out.println("update");
          }else{
-             //Nothing selected.
+             //Data Add(Create)
+            if(NameField.getText()!=null){
+                name=new Namelist();
+                name.setName(NameField.getText());
+                System.out.println(name.getName());
+            }else{ 
+            //Nothing selected.
              Alert alert =new Alert(Alert.AlertType.WARNING);
              //alert.initOwner(mainApp.getPrimaryStage());
              alert.setTitle("No Selection");
@@ -138,8 +148,16 @@ public class NameListController implements Initializable{
              alert.setContentText("Please select a person in the table.");
              
              alert.showAndWait();
+            }
          }
      }
-
-    
+     
+     @FXML
+     private void handleClear(){
+         //各種フィールドをクリア
+         IDField.clear();
+         NameField.clear();
+         //TableViewの選択もクリア
+         TableView.getSelectionModel().clearSelection();
+     }
 }
