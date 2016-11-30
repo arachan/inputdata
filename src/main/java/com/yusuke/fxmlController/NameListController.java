@@ -1,6 +1,7 @@
 package com.yusuke.fxmlController;
 
 import com.yusuke.Controller.NamelistJpaController;
+import com.yusuke.Controller.exceptions.NonexistentEntityException;
 import com.yusuke.entities.Namelist;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,6 +41,8 @@ public class NameListController implements Initializable{
     private TableColumn<Namelist, String> NameColumn;
     
     private ObservableList<Namelist> data;
+    
+    private NamelistJpaController controller;
         
     /**
      * Initializes the controller class.
@@ -49,7 +52,7 @@ public class NameListController implements Initializable{
            // Create EntityManager        
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("com.yusuke_inputdata_jar_1.0-SNAPSHOTPU");
         // Create Controller
-        NamelistJpaController controller =new NamelistJpaController(emf);
+        controller =new NamelistJpaController(emf);
         // Get Namelist Data
         List<Namelist> namelist = (List<Namelist>)controller.findAll();
         
@@ -87,11 +90,13 @@ public class NameListController implements Initializable{
     }
     
      @FXML
-    private void handleDeleteName(){
+    private void handleDeleteName() throws NonexistentEntityException{
         int selectedIndex=TableView.getSelectionModel().getSelectedIndex();
         if(selectedIndex >=0){
             //personTable.getItems().remove(selectedIndex);
+            controller.destroy(selectedIndex);
             System.out.println("delete");
+            
         }else{
             //Nothing selected.
             Alert alert=new Alert(Alert.AlertType.WARNING);
@@ -124,7 +129,7 @@ public class NameListController implements Initializable{
      * 
      */
     @FXML
-     private void handleEditName(){
+     private void handleEditName() throws Exception{
          Namelist name=TableView.getSelectionModel().getSelectedItem();
          //Data Update
          if(name!=null){
@@ -133,12 +138,14 @@ public class NameListController implements Initializable{
              //    showPersonDetails(selectedPerson);
              //}
              System.out.println("update");
+             controller.edit(name);
          }else{
              //Data Add(Create)
             if(NameField.getText()!=null){
                 name=new Namelist();
                 name.setName(NameField.getText());
                 System.out.println(name.getName());
+                controller.create(name);
             }else{ 
             //Nothing selected.
              Alert alert =new Alert(Alert.AlertType.WARNING);
