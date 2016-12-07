@@ -46,7 +46,7 @@ public class NameListController implements Initializable{
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-           // Create EntityManager        
+        // Create EntityManager        
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("com.yusuke_inputdata_jar_1.0-SNAPSHOTPU");
         // Create Controller
         NamelistJpaController controller =new NamelistJpaController(emf);
