@@ -89,6 +89,7 @@ public class NameListController implements Initializable{
             //delete data in database
             //namelistdao.remove(selectedIndex);
             System.out.println("delete");
+            
         }else{
             //Nothing selected.
             Alert alert=new Alert(Alert.AlertType.WARNING);
@@ -128,12 +129,14 @@ public class NameListController implements Initializable{
              //Update in database
              namelistdao.edit(name);
              System.out.println("update");
+             namelistdao.edit(name);
          }else{
              //Data Add(Create)
             if(NameField.getText()!=null){
                 name=new Namelist();
                 name.setName(NameField.getText());
                 System.out.println(name.getName());
+                namelistdao.add(name);
             }else{ 
             //Nothing selected.
              Alert alert =new Alert(Alert.AlertType.WARNING);
