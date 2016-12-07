@@ -1,5 +1,6 @@
 package com.yusuke.fxmlController;
 
+import com.yusuke.dao.NameListDao;
 import com.yusuke.Controller.NamelistJpaController;
 import com.yusuke.entities.Namelist;
 import java.net.URL;
@@ -46,22 +47,16 @@ public class NameListController implements Initializable{
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Create EntityManager        
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("com.yusuke_inputdata_jar_1.0-SNAPSHOTPU");
-        // Create Controller
-        NamelistJpaController controller =new NamelistJpaController(emf);
-        // Get Namelist Data
-        List<Namelist> namelist = (List<Namelist>)controller.findAll();
+        NameListDao namelistdao=new NameListDao();
+        List<Namelist>namelist=namelistdao.all();
         
         // Change List to ObservableList to use TableView
         data=FXCollections.observableArrayList(namelist);
-        
-              
+                      
         // Set CellValue 
         IDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         NameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        
-                
+                        
         showNameDetails(null);
 
         // Set ObservableList into TableView
