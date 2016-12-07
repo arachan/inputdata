@@ -1,7 +1,7 @@
 package com.yusuke.fxmlController;
 
+import com.yusuke.Controller.exceptions.NonexistentEntityException;
 import com.yusuke.dao.NameListDao;
-import com.yusuke.Controller.NamelistJpaController;
 import com.yusuke.entities.Namelist;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,8 +15,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  * FXML Controller class
@@ -41,13 +39,14 @@ public class NameListController implements Initializable{
     private TableColumn<Namelist, String> NameColumn;
     
     private ObservableList<Namelist> data;
-        
+    
+    private NameListDao namelistdao;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        NameListDao namelistdao=new NameListDao();
+        namelistdao=new NameListDao();
         List<Namelist>namelist=namelistdao.all();
         
         // Change List to ObservableList to use TableView
@@ -82,10 +81,13 @@ public class NameListController implements Initializable{
     }
     
      @FXML
-    private void handleDeleteName(){
+    private void handleDeleteName() throws NonexistentEntityException{
         int selectedIndex=TableView.getSelectionModel().getSelectedIndex();
         if(selectedIndex >=0){
-            //personTable.getItems().remove(selectedIndex);
+            //delete data in list
+                        
+            //delete data in database
+            //namelistdao.remove(selectedIndex);
             System.out.println("delete");
         }else{
             //Nothing selected.
@@ -119,14 +121,12 @@ public class NameListController implements Initializable{
      * 
      */
     @FXML
-     private void handleEditName(){
+     private void handleEditName() throws Exception{
          Namelist name=TableView.getSelectionModel().getSelectedItem();
          //Data Update
          if(name!=null){
-             //boolean okClicked = mainApp.showPersonEditDialog(name);
-             //if(okClicked){
-             //    showPersonDetails(selectedPerson);
-             //}
+             //Update in database
+             namelistdao.edit(name);
              System.out.println("update");
          }else{
              //Data Add(Create)
