@@ -26,8 +26,7 @@ public class NameListDao {
             emf=Persistence.createEntityManagerFactory("com.yusuke_inputdata_jar_1.0-SNAPSHOTPU");
             // Create Controller
             controller =new NamelistJpaController(emf);
-        }
-        
+        }       
         
         public void remove(Integer Namelistid) throws NonexistentEntityException{
             controller.destroy(Namelistid);
