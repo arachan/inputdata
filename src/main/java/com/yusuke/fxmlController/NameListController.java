@@ -100,7 +100,7 @@ public class NameListController implements Initializable{
             //delete data in database
             Namelist selecteditem=TableView.getSelectionModel().getSelectedItem();
             System.out.println("getID"+selecteditem.getId());
-            //namelistdao.remove(selecteditem.getId());
+            namelistdao.remove(selecteditem.getId());
             
             System.out.println("delete");
             

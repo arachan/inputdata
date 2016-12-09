@@ -1,16 +1,11 @@
 package com.yusuke.inputdata;
 
-import com.yusuke.Controller.NamelistJpaController;
-import com.yusuke.entities.Namelist;
-import java.util.List;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 
 public class MainApp extends Application {

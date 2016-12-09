@@ -28,7 +28,7 @@ public class NameListDao {
             controller =new NamelistJpaController(emf);
         }       
         
-        public void remove(Integer Namelistid) throws NonexistentEntityException{
+        public void remove(int Namelistid) throws NonexistentEntityException{
             controller.destroy(Namelistid);
         }
         
