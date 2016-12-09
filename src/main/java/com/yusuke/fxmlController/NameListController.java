@@ -98,9 +98,12 @@ public class NameListController implements Initializable{
             data.remove(selectedIndex);
             System.out.println("selectedIndex2"+selectedIndex);
             //delete data in database
-            Namelist selecteditem=TableView.getSelectionModel().getSelectedItem();
-            System.out.println("getID"+selecteditem.getId());
-            namelistdao.remove(selecteditem.getId());
+            //TableViewのSelectedItemを取ると最後に残った１行が削除されず
+            //Errorになるため、IDFieldの値をとって削除を実行するように変更
+            //Namelist selecteditem=TableView.getSelectionModel().getSelectedItem();
+            System.out.println(IDField.getText());
+            //System.out.println("getID"+selecteditem.getId());
+            namelistdao.remove(Integer.parseInt(IDField.getText()));
             
             System.out.println("delete");
             
