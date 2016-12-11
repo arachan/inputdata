@@ -82,6 +82,7 @@ public class NameListController implements Initializable{
     
      @FXML
     private void handleDeleteName() throws NonexistentEntityException{
+        Namelist name=TableView.getSelectionModel().getSelectedItem();
         int selectedIndex=TableView.getSelectionModel().getSelectedIndex();
         System.out.println("selectedIndex"+selectedIndex);
         if(selectedIndex <0){
@@ -98,8 +99,9 @@ public class NameListController implements Initializable{
             data.remove(selectedIndex);
             System.out.println("selectedIndex2"+selectedIndex);
             //delete data in database
-            System.out.println(IDField.getText());
-            namelistdao.remove(Integer.parseInt(IDField.getText()));
+            // Namelist name=TableView.getSelectionModel().getSelectedItem();
+            System.out.println("tableview"+name.getId());
+            namelistdao.remove(name.getId());
             
             System.out.println("delete");
             
