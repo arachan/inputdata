@@ -162,10 +162,10 @@ public class NameListController implements Initializable{
      
      @FXML
      private void handleClear(){
-         //各種フィールドをクリア
+         //all fields clear
          IDField.clear();
          NameField.clear();
-         //TableViewの選択もクリア
+         //TableView selected clear
          TableView.getSelectionModel().clearSelection();
      }
 }
