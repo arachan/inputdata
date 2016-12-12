@@ -142,4 +142,11 @@ public class NamelistJpaController implements Serializable {
         return q.getResultList();
     }
     
+    public List<Namelist> findByName(String name){
+        EntityManager em=getEntityManager();
+        TypedQuery<Namelist> q=em.createNamedQuery("Namelist.findByName",Namelist.class);
+        q.setParameter("name", name);        
+        return q.getResultList();
+    }
+    
 }
