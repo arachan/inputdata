@@ -23,7 +23,7 @@
                       <Button fx:id="ClearBtn" mnemonicParsing="false" onAction="#handleClear" text="Clear" />
                         <Button fx:id="UpdateBtn" mnemonicParsing="false" onAction="#handleEditName" text="Update" />
                         <Button fx:id="DeleteBtn" mnemonicParsing="false" onAction="#handleDeleteName" text="Delete" />
-                        <Button fx:id="SearchBtn" mnemonicParsing="false" text="Search" />
+                        <Button fx:id="SearchBtn" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
                     </buttons>
                   </ButtonBar>
                   <GridPane prefHeight="60.0" prefWidth="598.0">
