@@ -23,6 +23,7 @@ public class NameListDao {
     
         //Constractor
         public NameListDao(){
+            //EntityManagerFactory
             emf=Persistence.createEntityManagerFactory("com.yusuke_inputdata_jar_1.0-SNAPSHOTPU");
             // Create Controller
             controller =new NamelistJpaController(emf);
@@ -42,5 +43,9 @@ public class NameListDao {
         
         public List<Namelist> all(){
             return controller.findNamelistEntities();
+        }
+        
+        public List<Namelist> findbyName(String name){
+            return controller.findByName(name);
         }
 }

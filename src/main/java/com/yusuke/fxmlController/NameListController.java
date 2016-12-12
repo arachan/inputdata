@@ -113,13 +113,16 @@ public class NameListController implements Initializable{
      * details for a new person.
      */
     @FXML
-    private void handleNewName(){
-        Namelist Name=new Namelist();
-        
-        //boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
-        //if(okClicked){
-            //mainApp.getPersonData().add(tempPerson);
-        //}
+    private void handleSearch() {
+        //Search Keyword
+        String Keyword=NameField.getText();
+        //clear TableView Data
+        data.clear();        
+        //Serach
+        List<Namelist> namelist=namelistdao.findbyName(Keyword);
+        data=FXCollections.observableArrayList(namelist);
+        //Set Data in TableView
+        this.TableView.setItems(data);
     }
     
     /**
